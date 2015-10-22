@@ -5,16 +5,6 @@ In order to limit access to the application
 As an administrator
 I want to register users
 
-Scenario:  A scenario is a collection of executable steps of different type
-Given step represents a precondition to an event
-When step represents the occurrence of the event
-Then step represents the outcome of the event
-
-Scenario:  Another scenario exploring different combination of events
-Given a precondition
-When a negative event occurs
-Then a the outcome should be captured
-
 Scenario: the firstname of a user is not mandatory
 Given the lastname Bertels, email bert.bertels@gmail.com and password PasswordForBert but no firstname
 When I choose to create the person with the given data
