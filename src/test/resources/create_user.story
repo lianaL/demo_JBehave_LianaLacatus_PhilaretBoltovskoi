@@ -74,18 +74,3 @@ Scenario: the domain part of an email address can have three parts separated by 
 Given an email address 'bert.bertels@g.mail.com'
 When I choose to create a person with this email
 Then a person object is created with the given email
-
-Scenario: the email of a user should be a valid email address
-Given an email addres
-When I choose to create a person with this email
-Then a person object is created with the given email
-
-Examples:
-( email , motivation )
-( bert@gmail.com , the local part can have one part )
-( bert.bertels@gmail.com , the local and domain part can have two parts seperated by a dot )
-( bert.bertels@g.mail.com , the domain part can have three parts seperated by a dot )
-( 1-Be+rt.bertels@gmail.com , the first local part can contain upper- en lowercase characters, digits, hyphens and plus signs )
-( bert.1ber-Tels@gmail.com , the second local part can contain upper- en lowercase characters, digits and hyphens )
-( bert.bertels@gMail-1.com , the first domain part can contain upper- en lowercase characters, digits and hyphens )
-( bert.bertels@gmail.cOm , the third domain part can contain upper- en lowercase characters )
