@@ -5,6 +5,11 @@ In order to limit access to the application
 As an administrator
 I want to register users
 
+Scenario: the personal details of a user can be registered
+Given the firstname Bert, lastname Bertels, email bert.bertels@gmail.com and password PasswordForBert
+When I choose to create the person with the given data
+Then a person object is created with these data
+
 Scenario: the firstname of a user is not mandatory
 Given the lastname Bertels, email bert.bertels@gmail.com and password PasswordForBert but no firstname
 When I choose to create the person with the given data
