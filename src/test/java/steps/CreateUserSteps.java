@@ -14,19 +14,36 @@ public class CreateUserSteps {
 	private Person person;
 	private Person otherPerson;
 	private boolean exceptionIsThrown = false;
+	@SuppressWarnings("unused")
 	private Throwable throwable = null;
 
-	
+	protected void resetPerson(){
+		firstname = "Bert";
+		lastname = "Bertels";
+		email = "bert.bertels@gmail.com";
+		password = "PasswordForBert";
+	}
+
+	@BeforeScenario
+	public void beforeEachScenario() {
+		this.resetPerson();
+	}	
+	@AfterScenario
+	public void afterEachScenario() {
+		this.resetPerson();
+		person = null;
+	}	
+
 	protected Person createPerson() {
 		return new Person(email, password, firstname, lastname);
 	}
 	
-	@Given("the lastname Bertels, email bert.bertels@gmail.com and password PasswordForBert but no firstname")
-	public void givenTheLastnameBertelsEmailBertbertelsgmailcomAndPasswordPasswordForBertButNoFirstname() {
-		firstname = null;
-		lastname = "Bertels";
-		email = "bert.bertels@gmail.com";
-		password = "PasswordForBert";
+	@Given("the lastname $lastname, email $email and password $password but no firstname")
+	public void givenTheLastnameEmailAndPasswordButNoFirstname(String lastname, String email, String password) {
+		this.firstname = null;
+		this.lastname = lastname;
+		this.email = email;
+		this.password = password;
 	}
 
 	@When("I choose to create the person with the given data")
@@ -50,15 +67,6 @@ public class CreateUserSteps {
 		assertNotNull(person.getPassword());
 	}
 	
-	/*
-	@Given("the firstname Bert, lastname Bertels, email bert.bertels@gmail.com and password PasswordForBert")
-	public void givenTheFirstnameBertLastnameBertelsEmailBertbertelsgmailcomAndPasswordPasswordForBert() {
-		firstname = "Bert";
-		lastname = "Bertels";
-		email = "bert.bertels@gmail.com";
-		password = "PasswordForBert";
-	}
-	*/
 	@Given("the firstname $firstname, lastname $lastname, email $email and password $password")
 	public void givenTheFirstnameLastnameEmailAndPassword(String firstname, String lastname, String email, String password) {
 		this.firstname = firstname;
@@ -68,6 +76,9 @@ public class CreateUserSteps {
 	}
 
 	@Then("a person object is created with these data")
+	@Aliases(values={
+			"a person object is created with the given email"
+	})
 	public void thenAPersonObjectIsCreatedWithTheseData() {
 		assertEquals(person.getFirstName(), firstname);
 		assertEquals(person.getLastName(), lastname);
@@ -97,8 +108,7 @@ public class CreateUserSteps {
 
 	@When("I choose to create a person with this password")
 	@Aliases(values={
-			"I choose to create a person with this email",
-			"a person object is created with the given email"
+			"I choose to create a person with this email"
 	})
 	public void whenIChooseToCreateAPersonWithThisPassword() {
 		person = createPerson();
@@ -161,9 +171,8 @@ public class CreateUserSteps {
 		password = null;
 	}
 
-	@Given("an email addres <email>")
-	@Pending
-	public void givenAnEmailAddresemail(@Named("email") String email) {
+	@Given("an email addres <email> that is valid because <motivation>")
+	public void givenAnEmailAddresemailThatIsValidBecausemotivation(@Named("email") String email) {
 		this.email = email;
 	}
 }

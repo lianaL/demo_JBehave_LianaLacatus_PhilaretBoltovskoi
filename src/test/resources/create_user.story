@@ -51,7 +51,7 @@ Then an error is given
 And the person is not created
 
 Scenario: the email of a user should be a valid email address
-Given an email addres <email>
+Given an email addres <email> that is valid because <motivation>
 When I choose to create a person with this email
 Then a person object is created with the given email
 
@@ -64,18 +64,3 @@ Examples:
 | bert.1ber-Tels@gmail.com | the second local part can contain upper- en lowercase characters, digits and hyphens |
 | bert.bertels@gMail-1.com | the first domain part can contain upper- en lowercase characters, digits and hyphens |
 | bert.bertels@gmail.cOm | the third domain part can contain upper- en lowercase characters |
-
-Scenario: the local part of an email address can have one part
-Given an email address 'bert@gmail.com'
-When I choose to create a person with this email
-Then a person object is created with the given email
-
-Scenario: the local and domain part of an email address can have two parts seperated by a dot
-Given an email address 'bert.bertels@gmail.com'
-When I choose to create a person with this email
-Then a person object is created with the given email
-
-Scenario: the domain part of an email address can have three parts separated by a dot
-Given an email address 'bert.bertels@g.mail.com'
-When I choose to create a person with this email
-Then a person object is created with the given email
