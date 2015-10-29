@@ -85,12 +85,12 @@ public class CreateUserSteps {
 		assertEquals(person.getUserId(), email);
 		assertNotNull(person.getPassword());
 	}
-	@Given("the firstname Bert, email bert.bertels@gmail.com and password PasswordForBert of a person but no lastname")
-	public void givenTheFirstnameBertEmailBertbertelsgmailcomAndPasswordPasswordForBertOfAPersonButNoLastname() {
-		firstname = "Bert";
-		lastname = null;
-		email = "bert.bertels@gmail.com";
-		password = "PasswordForBert";
+	@Given("the firstname $firstname, email $email and password $password of a person but no lastname")
+	public void givenTheFirstnameEmailAndPasswordOfAPersonButNoLastname(String firstname, String email, String password) {
+		this.firstname = firstname;
+		this.lastname = null;
+		this.email = email;
+		this.password = password;
 	}
 
 	@Then("a person object is created with these data and no lastname")
@@ -101,9 +101,9 @@ public class CreateUserSteps {
 		assertNotNull(person.getPassword());
 	}
 	
-	@Given("the password PasswordForBert")
-	public void givenThePasswordPasswordForBert() {
-		password = "PasswordForBert";
+	@Given("the password $password")
+	public void givenThePassword(String password) {
+		this.password = password;
 	}
 
 	@When("I choose to create a person with this password")
