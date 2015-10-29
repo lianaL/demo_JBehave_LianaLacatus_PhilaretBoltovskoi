@@ -119,9 +119,9 @@ public class CreateUserSteps {
 		assertTrue(person.getPassword().length() == 40);
 	}
 
-	@Given("another password OtherPasswordForJan")
-	public void givenAnotherPasswordOtherPasswordForJan() {
-		otherPassword = "OtherPasswordForJan";
+	@Given("another password $password")
+	public void givenAnotherPasswordOther(String password) {
+		this.otherPassword = password;
 	}
 
 	@When("I choose to create a person with the first password")
@@ -145,12 +145,12 @@ public class CreateUserSteps {
 	  otherPerson = createPerson();
 	}
 
-	@Given("the firstname Bert, lastname Bertels and password PasswordForBert but no email")
-	public void givenTheFirstnameBertLastnameBertelsAndPasswordPasswordForBertButNoEmail() {
-		firstname = "Bert";
-		lastname = "Bertels";
-		email = null;
-		password = "PasswordForBert";
+	@Given("the firstname $firstname, lastname $lastname and password $password but no email")
+	public void givenTheFirstnameLastnameAndPasswordButNoEmail(String firstname, String lastname, String password) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = null;
+		this.password = password;
 	}
 
 	@Then("an error is given")
@@ -163,12 +163,12 @@ public class CreateUserSteps {
 		assertNull(person);
 	}
 
-	@Given("the firstname Bert, lastname Bertels and email bert.bertels@gmail.com but no password")
-	public void givenTheFirstnameBertLastnameBertelsAndEmailBertbertelsgmailcomButNoPassword() {
-		firstname = "Bert";
-		lastname = "Bertels";
-		email = "bert.bertels@gmail.com";
-		password = null;
+	@Given("the firstname $firstname, lastname $lastname and email $email but no password")
+	public void givenTheFirstnameLastnameAndEmailButNoPassword(String firstname, String lastname, String email) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.password = null;
 	}
 
 	@Given("an email addres <email> that is valid because <motivation>")
